@@ -98,6 +98,48 @@ src/
 - E2E tests using Playwright for learning path navigation and progress tracking
 - **ALWAYS** verify that new feature work is correct using Playwright MCP before moving on to the next feature.
 
+## Git Workflow
+
+### Trunk-Based Development
+This project uses **trunk-based development** with short-lived feature branches.
+
+### Branch Naming Convention
+Each beads ticket gets its own branch named after the ticket ID:
+```
+<ticket-id>/<short-description>
+```
+
+Examples:
+- `RNN-20/web-app-foundation`
+- `RNN-4/rnn-architecture-module`
+- `RNN-21/latex-equation-system`
+
+### Workflow Process
+1. **Pick a ticket** - Use `bd ready` to find unblocked tickets
+2. **Create branch** - `git checkout -b RNN-XX/description`
+3. **Update ticket status** - Mark as `in_progress` in beads
+4. **Implement** - Make small, focused commits
+5. **Test** - Run Playwright tests before completing
+6. **Merge to main** - `git checkout main && git merge --no-ff RNN-XX/description`
+7. **Close ticket** - Use `bd close RNN-XX` with completion reason
+8. **Delete branch** - `git branch -d RNN-XX/description`
+
+### Commit Guidelines
+- Keep commits small and atomic
+- Use conventional commit messages:
+  - `feat(RNN-XX): add component/feature`
+  - `fix(RNN-XX): resolve issue`
+  - `test(RNN-XX): add tests for feature`
+  - `docs(RNN-XX): update documentation`
+- Reference ticket ID in every commit message
+
+### Branch Rules
+- **main** is always deployable
+- Feature branches should be **short-lived** (< 1 day ideally)
+- **No long-running branches** - break large tickets into smaller ones if needed
+- Merge to main **only when tests pass**
+- Delete feature branches after merging
+
 ## Notes
 
 Start working on the project when the user gives you the go-ahead via 'GO!' command.
