@@ -1,6 +1,6 @@
 'use client'
 
-import { use, useEffect } from 'react'
+import { use, useEffect, Suspense, lazy } from 'react'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { Button, Card, CardContent } from '@/components/ui'
@@ -9,6 +9,9 @@ import { MODULES } from '@/lib/constants'
 import { useProgressStore } from '@/stores/progressStore'
 import { useGamificationStore } from '@/stores/gamificationStore'
 import { BadgeNotificationContainer } from '@/components/gamification'
+
+// Lazy load module content components
+const Module2Content = lazy(() => import('@/content/modules/Module2Content'))
 
 interface ModulePageProps {
   params: Promise<{ moduleId: string }>
@@ -70,21 +73,39 @@ export default function ModulePage({ params }: ModulePageProps) {
           <p className="text-lg text-slate-600">{moduleData.subtitle}</p>
         </div>
 
-        {/* Module Content Placeholder */}
-        <Card className="mb-8">
-          <CardContent className="py-12 text-center">
-            <div className="mb-4 text-6xl">🚧</div>
-            <h2 className="mb-2 text-xl font-semibold text-slate-900">
-              Module Content Coming Soon
-            </h2>
-            <p className="mx-auto max-w-md text-slate-600">
-              {moduleData.description}
-            </p>
-            <p className="mt-4 text-sm text-slate-500">
-              This module will include interactive exercises, quizzes, and visualizations.
-            </p>
-          </CardContent>
-        </Card>
+        {/* Module Content */}
+        <div className="mb-8">
+          {moduleId === 2 ? (
+            <Suspense fallback={
+              <Card>
+                <CardContent className="py-12 text-center">
+                  <div className="animate-pulse">
+                    <div className="h-8 bg-slate-200 rounded w-1/2 mx-auto mb-4"></div>
+                    <div className="h-4 bg-slate-200 rounded w-3/4 mx-auto mb-2"></div>
+                    <div className="h-4 bg-slate-200 rounded w-2/3 mx-auto"></div>
+                  </div>
+                </CardContent>
+              </Card>
+            }>
+              <Module2Content />
+            </Suspense>
+          ) : (
+            <Card>
+              <CardContent className="py-12 text-center">
+                <div className="mb-4 text-6xl">🚧</div>
+                <h2 className="mb-2 text-xl font-semibold text-slate-900">
+                  Module Content Coming Soon
+                </h2>
+                <p className="mx-auto max-w-md text-slate-600">
+                  {moduleData.description}
+                </p>
+                <p className="mt-4 text-sm text-slate-500">
+                  This module will include interactive exercises, quizzes, and visualizations.
+                </p>
+              </CardContent>
+            </Card>
+          )}
+        </div>
 
         {/* Navigation */}
         <div className="flex items-center justify-between">
