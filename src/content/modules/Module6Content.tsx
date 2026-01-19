@@ -4,6 +4,8 @@ import { Equation, InlineEquation } from '@/components/equations'
 import type { SymbolDefinition } from '@/components/equations'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, ExplanationCards } from '@/components/ui'
 import type { ExplanationItem } from '@/components/ui'
+import { Quiz } from '@/components/interactive/quiz/Quiz'
+import { MODULE_6_QUIZ } from '@/content/module-6/quiz'
 
 // Symbol definitions for encoder equation
 const encoderSymbols: SymbolDefinition[] = [
@@ -713,6 +715,19 @@ export function Module6Content() {
             revolutionized sequence modeling - eventually leading to the Transformer architecture that
             powers modern AI.
           </p>
+        </CardContent>
+      </Card>
+
+      {/* Knowledge Check Quiz */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Test Your Knowledge</CardTitle>
+          <CardDescription>
+            Check your understanding of encoder-decoder architectures and multimodal applications
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <Quiz config={MODULE_6_QUIZ} />
         </CardContent>
       </Card>
     </div>
