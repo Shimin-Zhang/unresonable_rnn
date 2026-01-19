@@ -16,7 +16,6 @@ const Module2Content = lazy(() => import('@/content/modules/Module2Content'))
 const Module3Content = lazy(() => import('@/content/module3'))
 const Module4Content = lazy(() => import('@/content/modules/Module4Content'))
 const Module5Content = lazy(() => import('@/content/modules/Module5Content'))
-const Module6Content = lazy(() => import('@/content/modules/Module6Content'))
 
 interface ModulePageProps {
   params: Promise<{ moduleId: string }>
@@ -115,12 +114,6 @@ export default function ModulePage({ params }: ModulePageProps) {
         return (
           <Suspense fallback={<ModuleLoadingFallback />}>
             <Module5Content />
-          </Suspense>
-        )
-      case 6:
-        return (
-          <Suspense fallback={<ModuleLoadingFallback />}>
-            <Module6Content />
           </Suspense>
         )
       default:
