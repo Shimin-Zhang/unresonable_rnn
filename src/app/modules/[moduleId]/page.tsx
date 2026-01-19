@@ -1,12 +1,14 @@
 'use client'
 
-import { use } from 'react'
+import { use, useEffect } from 'react'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { Button, Card, CardContent } from '@/components/ui'
 import { Header, Footer } from '@/components/layout'
 import { MODULES } from '@/lib/constants'
 import { useProgressStore } from '@/stores/progressStore'
+import { useGamificationStore } from '@/stores/gamificationStore'
+import { BadgeNotificationContainer } from '@/components/gamification'
 
 interface ModulePageProps {
   params: Promise<{ moduleId: string }>
@@ -17,6 +19,7 @@ export default function ModulePage({ params }: ModulePageProps) {
   const moduleId = parseInt(resolvedParams.moduleId, 10)
   const moduleData = MODULES.find((m) => m.id === moduleId)
   const { completeModule, completedModules, setCurrentModule } = useProgressStore()
+  const gamification = useGamificationStore()
 
   if (!moduleData) {
     notFound()
@@ -26,12 +29,24 @@ export default function ModulePage({ params }: ModulePageProps) {
   const prevModule = moduleId > 0 ? MODULES[moduleId - 1] : null
   const nextModule = moduleId < MODULES.length - 1 ? MODULES[moduleId + 1] : null
 
+  // Start module tracking when page loads
+  useEffect(() => {
+    if (!isCompleted) {
+      gamification.startModule(moduleId)
+    }
+  }, [moduleId, isCompleted, gamification])
+
   const handleComplete = () => {
     completeModule(moduleId)
+    // Trigger gamification tracking
+    gamification.completeModule(moduleId)
+    // Check for path completion badges
+    gamification.checkPathCompletion([...completedModules, moduleId])
   }
 
   const handleStart = () => {
     setCurrentModule(moduleId)
+    gamification.startModule(moduleId)
   }
 
   return (
@@ -99,6 +114,7 @@ export default function ModulePage({ params }: ModulePageProps) {
         </div>
       </main>
       <Footer />
+      <BadgeNotificationContainer />
     </div>
   )
 }

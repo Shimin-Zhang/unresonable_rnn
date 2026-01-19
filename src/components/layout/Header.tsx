@@ -2,10 +2,13 @@
 
 import Link from 'next/link'
 import { useProgress } from '@/hooks/useProgress'
+import { useGamification } from '@/hooks/useGamification'
 import { APP_NAME } from '@/lib/constants'
 
 export function Header() {
   const { progress, currentPath } = useProgress()
+  const gamification = useGamification()
+  const { stats } = gamification
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60">
@@ -25,9 +28,9 @@ export function Header() {
           <span className="font-semibold text-slate-900">RNN Learning</span>
         </Link>
 
-        <nav className="flex items-center space-x-6">
+        <nav className="flex items-center space-x-4 sm:space-x-6">
           {currentPath && (
-            <div className="flex items-center space-x-3">
+            <div className="hidden sm:flex items-center space-x-3">
               <span className="text-sm text-slate-600">{currentPath.name}</span>
               <div className="h-2 w-32 overflow-hidden rounded-full bg-slate-200">
                 <div
@@ -38,6 +41,24 @@ export function Header() {
               <span className="text-sm font-medium text-slate-700">{progress}%</span>
             </div>
           )}
+
+          {/* Gamification Quick Stats */}
+          <div className="flex items-center gap-3">
+            {stats.currentStreak > 0 && (
+              <span className="hidden sm:flex items-center gap-1 text-sm text-orange-500 font-medium">
+                <span>🔥</span>
+                <span>{stats.currentStreak}</span>
+              </span>
+            )}
+            <Link
+              href="/progress"
+              className="flex items-center gap-1.5 px-2.5 py-1 bg-blue-50 hover:bg-blue-100 rounded-lg text-blue-700 text-sm font-medium transition-colors"
+            >
+              <span>{stats.totalPoints.toLocaleString()}</span>
+              <span className="text-blue-500">pts</span>
+            </Link>
+          </div>
+
           <Link
             href="/modules"
             className="text-sm font-medium text-slate-600 hover:text-slate-900"
