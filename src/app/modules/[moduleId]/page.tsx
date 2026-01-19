@@ -14,6 +14,7 @@ import { BadgeNotificationContainer } from '@/components/gamification'
 // Lazy load module content components
 const Module2Content = lazy(() => import('@/content/modules/Module2Content'))
 const Module3Content = lazy(() => import('@/content/module3'))
+const Module5Content = lazy(() => import('@/content/modules/Module5Content'))
 
 interface ModulePageProps {
   params: Promise<{ moduleId: string }>
@@ -100,6 +101,12 @@ export default function ModulePage({ params }: ModulePageProps) {
         return (
           <Suspense fallback={<ModuleLoadingFallback />}>
             <Module3Content />
+          </Suspense>
+        )
+      case 5:
+        return (
+          <Suspense fallback={<ModuleLoadingFallback />}>
+            <Module5Content />
           </Suspense>
         )
       default:
