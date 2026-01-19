@@ -14,6 +14,10 @@ export type { SliderControlProps } from './SliderControl'
 export { TimelineChart } from './TimelineChart'
 export type { TimelineChartProps, TimelineChartRef } from './TimelineChart'
 
+export { GradientFlowVisualization } from './GradientFlowVisualization'
+
+export { LSTMCellDiagram } from './LSTMCellDiagram'
+
 // Types
 export type {
   NetworkNode,

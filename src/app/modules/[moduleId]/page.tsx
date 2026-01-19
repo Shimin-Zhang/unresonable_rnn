@@ -13,6 +13,7 @@ import { BadgeNotificationContainer } from '@/components/gamification'
 
 // Lazy load module content components
 const Module2Content = lazy(() => import('@/content/modules/Module2Content'))
+const Module3Content = lazy(() => import('@/content/module3'))
 
 interface ModulePageProps {
   params: Promise<{ moduleId: string }>
@@ -40,9 +41,7 @@ function ModulePlaceholder({ description }: { description: string }) {
         <h2 className="mb-2 text-xl font-semibold text-slate-900">
           Module Content Coming Soon
         </h2>
-        <p className="mx-auto max-w-md text-slate-600">
-          {description}
-        </p>
+        <p className="mx-auto max-w-md text-slate-600">{description}</p>
         <p className="mt-4 text-sm text-slate-500">
           This module will include interactive exercises, quizzes, and visualizations.
         </p>
@@ -95,6 +94,12 @@ export default function ModulePage({ params }: ModulePageProps) {
         return (
           <Suspense fallback={<ModuleLoadingFallback />}>
             <Module2Content />
+          </Suspense>
+        )
+      case 3:
+        return (
+          <Suspense fallback={<ModuleLoadingFallback />}>
+            <Module3Content />
           </Suspense>
         )
       default:
