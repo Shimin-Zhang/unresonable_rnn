@@ -18,6 +18,7 @@ const Module4Content = lazy(() => import('@/content/modules/Module4Content'))
 const Module5Content = lazy(() => import('@/content/modules/Module5Content'))
 const Module6Content = lazy(() => import('@/content/modules/Module6Content'))
 const Module7Content = lazy(() => import('@/content/modules/Module7Content'))
+const Module9Content = lazy(() => import('@/content/modules/Module9Content'))
 const Module10Content = lazy(() => import('@/content/modules/Module10Content'))
 
 interface ModulePageProps {
@@ -129,6 +130,12 @@ export default function ModulePage({ params }: ModulePageProps) {
         return (
           <Suspense fallback={<ModuleLoadingFallback />}>
             <Module7Content />
+          </Suspense>
+        )
+      case 9:
+        return (
+          <Suspense fallback={<ModuleLoadingFallback />}>
+            <Module9Content />
           </Suspense>
         )
       case 10:
