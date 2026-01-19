@@ -1,0 +1,83 @@
+import type { QuizConfig } from '@/components/interactive/quiz/types'
+
+export const MODULE_1_QUIZ: QuizConfig = {
+  id: 'module-1-sequences',
+  title: 'Why Sequences Matter - Knowledge Check',
+  description: 'Test your understanding of sequence architectures and the limitations of vanilla neural networks.',
+  questions: [
+    {
+      id: 'q1-fixed-input',
+      type: 'multiple_choice',
+      question: 'Why can\'t standard neural networks handle variable-length input directly?',
+      options: [
+        'They require a fixed number of input neurons (fixed-size input layer)',
+        'They are too slow for long sequences',
+        'They don\'t have activation functions',
+        'They can only process images',
+      ],
+      correctAnswer: 0,
+      explanation: 'Traditional neural networks have a fixed architecture with a predetermined number of input neurons. A movie review of 10 words and one of 500 words cannot both fit the same fixed-size input layer without workarounds like padding or truncation.',
+      points: 10,
+    },
+    {
+      id: 'q2-many-to-one',
+      type: 'multiple_choice',
+      question: 'Which sequence architecture type would you use for sentiment analysis (classifying a review as positive or negative)?',
+      options: [
+        'One-to-One',
+        'One-to-Many',
+        'Many-to-One',
+        'Many-to-Many (encoder-decoder)',
+      ],
+      correctAnswer: 2,
+      explanation: 'Sentiment analysis takes a sequence of words (many inputs) and produces a single classification output (one output), making it a Many-to-One architecture. The network reads the entire review and outputs a single sentiment score.',
+      points: 10,
+    },
+    {
+      id: 'q3-architecture-matching',
+      type: 'matching',
+      question: 'Match each application to its correct sequence architecture type:',
+      pairs: [
+        { id: 'p1', left: 'Image Captioning', right: 'One-to-Many' },
+        { id: 'p2', left: 'Machine Translation', right: 'Many-to-Many (encoder-decoder)' },
+        { id: 'p3', left: 'Video Frame Labeling', right: 'Many-to-Many (synced)' },
+        { id: 'p4', left: 'Fraud Detection from Transaction History', right: 'Many-to-One' },
+      ],
+      explanation: 'Image captioning takes a single image (one) and generates a sequence of words (many). Machine translation converts a sequence in one language to a sequence in another—the output length differs from input, requiring encoder-decoder. Video frame labeling outputs one label per frame (synced lengths). Fraud detection reads a sequence of transactions and outputs a single classification.',
+      points: 20,
+    },
+    {
+      id: 'q4-convergence',
+      type: 'multiple_choice',
+      question: 'RNNs were invented in the 1980s. What convergence of factors made them suddenly work well around 2015?',
+      options: [
+        'Faster internet connections',
+        'GPU computing power, large datasets, and algorithmic improvements (like LSTM)',
+        'Social media became popular',
+        'Smartphones were invented',
+      ],
+      correctAnswer: 1,
+      explanation: 'Three factors converged: (1) GPU computing power made training feasible, (2) large text corpora became available for training, and (3) algorithmic improvements like LSTM (1997) that solved the vanishing gradient problem had time to mature and be understood.',
+      points: 10,
+    },
+    {
+      id: 'q5-turing-complete',
+      type: 'multiple_choice',
+      question: 'What does it mean that RNNs are "Turing-complete"?',
+      options: [
+        'They were invented by Alan Turing',
+        'They can only process English text',
+        'They can theoretically simulate any computation',
+        'They always find the optimal solution',
+      ],
+      correctAnswer: 2,
+      explanation: 'Turing-completeness means RNNs can theoretically simulate any computation a Turing machine can perform. However, as Karpathy notes, this is a theoretical ceiling—finite precision and training limitations mean they don\'t always find the right program in practice.',
+      points: 10,
+    },
+  ],
+  shuffleQuestions: false,
+  shuffleOptions: false,
+  showFeedback: 'immediate',
+  allowRetry: true,
+  passingScore: 70,
+}
