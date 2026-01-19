@@ -60,6 +60,12 @@ export function Header() {
           </div>
 
           <Link
+            href="/paths"
+            className="text-sm font-medium text-slate-600 hover:text-slate-900"
+          >
+            Paths
+          </Link>
+          <Link
             href="/modules"
             className="text-sm font-medium text-slate-600 hover:text-slate-900"
           >

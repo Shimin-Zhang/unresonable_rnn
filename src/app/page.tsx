@@ -28,7 +28,7 @@ export default function HomePage() {
                 Start Learning
               </Button>
             </Link>
-            <Link href="#paths">
+            <Link href="/paths">
               <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
                 Choose Your Path
               </Button>
