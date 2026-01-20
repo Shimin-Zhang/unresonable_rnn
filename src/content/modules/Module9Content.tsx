@@ -5,6 +5,8 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription, ExplanationC
 import { Equation, InlineEquation } from '@/components/equations'
 import type { ExplanationItem } from '@/components/ui'
 import type { SymbolDefinition } from '@/components/equations'
+import { Quiz } from '@/components/interactive/quiz/Quiz'
+import { MODULE_9_QUIZ } from '@/content/module-9/quiz'
 
 // BPTT gradient symbols
 const bpttSymbols: SymbolDefinition[] = [
@@ -842,6 +844,19 @@ export function Module9Content() {
               </div>
             ))}
           </div>
+        </CardContent>
+      </Card>
+
+      {/* Knowledge Check Quiz */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Test Your Knowledge</CardTitle>
+          <CardDescription>
+            Check your understanding of RNN implementation and training techniques
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <Quiz config={MODULE_9_QUIZ} />
         </CardContent>
       </Card>
     </div>
