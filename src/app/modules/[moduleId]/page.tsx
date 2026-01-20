@@ -23,7 +23,12 @@ const Module9Content = lazy(() => import('@/content/modules/Module9Content'))
 const Module10Content = lazy(() => import('@/content/modules/Module10Content'))
 
 interface ModulePageProps {
-  params: Promise<{ moduleId: string }>
+  params: Promise<{ moduleId: string }> | { moduleId: string }
+}
+
+// Helper to check if value is a Promise
+function isPromise<T>(value: T | Promise<T>): value is Promise<T> {
+  return value !== null && typeof value === 'object' && 'then' in value
 }
 
 function ModuleLoadingFallback() {
@@ -58,7 +63,7 @@ function ModulePlaceholder({ description }: { description: string }) {
 }
 
 export default function ModulePage({ params }: ModulePageProps) {
-  const resolvedParams = use(params)
+  const resolvedParams = isPromise(params) ? use(params) : params
   const moduleId = parseInt(resolvedParams.moduleId, 10)
   const moduleData = MODULES.find((m) => m.id === moduleId)
   const { completeModule, completedModules, setCurrentModule } = useProgressStore()
