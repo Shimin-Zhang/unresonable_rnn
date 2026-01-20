@@ -167,7 +167,7 @@ export function Module2Content() {
         </CardHeader>
         <CardContent className="space-y-6">
           <Equation
-            latex="\\color{#2563eb}{h_t} = \\tanh(\\color{#16a34a}{W_{hh}} \\cdot \\color{#2563eb}{h_{t-1}} + \\color{#ea580c}{W_{xh}} \\cdot \\color{#dc2626}{x_t} + \\color{#9333ea}{b_h})"
+            latex="\textcolor{#2563eb}{h_t} = \tanh(\textcolor{#16a34a}{W_{hh}} \cdot \textcolor{#2563eb}{h_{t-1}} + \textcolor{#ea580c}{W_{xh}} \cdot \textcolor{#dc2626}{x_t} + \textcolor{#9333ea}{b_h})"
             symbols={hiddenStateSymbols}
             symbolTablePosition="below"
             size="lg"
@@ -254,7 +254,7 @@ export function Module2Content() {
         </CardHeader>
         <CardContent className="space-y-6">
           <Equation
-            latex="\\color{#db2777}{y_t} = \\color{#0891b2}{W_{hy}} \\cdot \\color{#2563eb}{h_t} + \\color{#9333ea}{b_y}"
+            latex="\textcolor{#db2777}{y_t} = \textcolor{#0891b2}{W_{hy}} \cdot \textcolor{#2563eb}{h_t} + \textcolor{#9333ea}{b_y}"
             symbols={outputSymbols}
             symbolTablePosition="below"
             size="lg"
@@ -345,7 +345,7 @@ export function Module2Content() {
         </CardHeader>
         <CardContent className="space-y-6">
           <Equation
-            latex="\\color{#16a34a}{p_t} = \\text{softmax}(\\color{#db2777}{y_t}) = \\frac{e^{\\color{#db2777}{y_{t,i}}}}{\\sum_j e^{\\color{#db2777}{y_{t,j}}}}"
+            latex="\textcolor{#16a34a}{p_t} = \text{softmax}(\textcolor{#db2777}{y_t}) = \frac{e^{\textcolor{#db2777}{y_{t,i}}}}{\sum_j e^{\textcolor{#db2777}{y_{t,j}}}}"
             symbols={softmaxSymbols}
             symbolTablePosition="below"
             size="lg"
