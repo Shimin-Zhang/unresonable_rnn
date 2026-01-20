@@ -3,6 +3,8 @@
 import { InlineEquation } from '@/components/equations'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, ExplanationCards } from '@/components/ui'
 import type { ExplanationItem } from '@/components/ui'
+import { Quiz } from '@/components/interactive/quiz/Quiz'
+import { MODULE_8_QUIZ } from '@/content/module-8/quiz'
 
 // Stakeholder explanations for RNN limitations
 const limitationsExplanations: ExplanationItem[] = [
@@ -440,6 +442,19 @@ export function Module8Content() {
             In the next module, we will dive into implementation details - how to actually build and train
             these models from scratch using NumPy, PyTorch, or Hugging Face.
           </p>
+        </CardContent>
+      </Card>
+
+      {/* Knowledge Check Quiz */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Test Your Knowledge</CardTitle>
+          <CardDescription>
+            Check your understanding of RNN limitations and the modern landscape
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <Quiz config={MODULE_8_QUIZ} />
         </CardContent>
       </Card>
     </div>
